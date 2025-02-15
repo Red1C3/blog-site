@@ -10,15 +10,21 @@ async function store(req, res) {
     date: req.body.date,
     content: req.body.content
   })
-  res.redirect('/')
+  res.redirect('/home')
 }
 
-async function index(req,res){
-  res.render('index.ejs',{posts:await Post.findAll()})
+async function index(req, res) {
+  res.render('index.ejs', { posts: await Post.findAll() })
+}
+
+async function get(req, res) {
+  const post = await Post.findByPk(req.params.postId)
+  res.render('post.ejs', { post })
 }
 
 module.exports = {
   store,
   create,
-  index
+  index,
+  get
 }

@@ -1,12 +1,13 @@
 <!DOCTYPE html>
 <html>
 <body>
-<h1>Posts</h1>
+<h1>Personal Blog</h1>
 <a href="/new"><button type="button">New Post</button></a>
 <% for(let i=0;i<posts.length;i++) { %>
+<a href="/post/<%= posts[i].id %>" >
 <h2><%= posts[i].title %></h2>
 <h3><%= posts[i].date.toLocaleDateString() %></h3>
-<p><%= posts[i].content%></p>
+</a>
 <% } %>
 </body>
 </html>

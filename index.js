@@ -11,7 +11,10 @@ app.use(express.urlencoded())
 app.get('/new', PostController.create)
 app.post('/create', body("title").isString(), body("date").isDate(), body("content").isString(),
   PostController.store)
+app.get('/home', PostController.index)
 app.get('/', PostController.index)
+app.get('/admin', PostController.index)
+app.get('/post/:postId',PostController.get)
 
 app.listen(3000, () => {
   console.log('Listening on 3000')
