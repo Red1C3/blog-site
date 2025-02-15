@@ -5,11 +5,9 @@ function create(req, res) {
 }
 
 async function store(req, res) {
-  const post = await Post.create({
-    title: req.body.title,
-    date: req.body.date,
-    content: req.body.content
-  })
+  const post = await Post.create(
+    req.body
+  )
   res.redirect('/home')
 }
 
@@ -22,9 +20,24 @@ async function get(req, res) {
   res.render('post.ejs', { post })
 }
 
+async function edit(req, res) {
+  const post = await Post.findByPk(req.params.postId)
+  res.render('edit.ejs', { post })
+}
+
+async function update(req,res){
+  const post=await Post.findByPk(req.params.postId)
+  await post.update(
+    req.body
+  )
+  res.redirect('/post/'+req.params.postId)
+}
+
 module.exports = {
   store,
   create,
   index,
-  get
+  get,
+  edit,
+  update
 }
