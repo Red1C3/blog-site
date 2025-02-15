@@ -1,4 +1,3 @@
-const { validationResult } = require('express-validator')
 const Post = require('../models').Post
 
 function create(req, res) {
@@ -6,19 +5,20 @@ function create(req, res) {
 }
 
 async function store(req, res) {
-  const result = validationResult(req)
-  if (!result) {
-    res.render('create.ejs', { errors: result.error })
-  }
   const post = await Post.create({
     title: req.body.title,
     date: req.body.date,
     content: req.body.content
   })
-  res.render('index.ejs')
+  res.redirect('/')
+}
+
+async function index(req,res){
+  res.render('index.ejs',{posts:await Post.findAll()})
 }
 
 module.exports = {
   store,
-  create
+  create,
+  index
 }
