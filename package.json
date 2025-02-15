@@ -4,7 +4,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev":"npx nodemon index.js"
+    "dev": "npx nodemon index.js"
   },
   "author": "",
   "license": "Unlicense",
@@ -16,6 +16,7 @@
   "dependencies": {
     "ejs": "^3.1.10",
     "express": "^4.21.2",
+    "express-validator": "^7.2.1",
     "mariadb": "^3.4.0",
     "mysql2": "^3.12.0",
     "sequelize": "^6.37.5"
