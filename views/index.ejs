@@ -2,7 +2,9 @@
 <html>
 <body>
 <h1>Personal Blog</h1>
+<% if(locals.loggedIn){ %>
 <a href="/new"><button type="button">New Post</button></a>
+<% } %>
 <% for(let i=0;i<posts.length;i++) { %>
 <a href="/post/<%= posts[i].id %>" >
 <h2><%= posts[i].title %></h2>

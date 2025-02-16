@@ -1,7 +1,9 @@
 <!DOCTYPE html>
 <html>
 <body>
+<% if(locals.loggedIn){ %>
 <a href="/edit/<%=post.id%>"><button type="button">Update Post</button></a>
+<% } %>
 <h1><%=post.title%></h1>
 <h2><%=post.date.toLocaleDateString()%></h2>
 <p><%=post.content%></p>
