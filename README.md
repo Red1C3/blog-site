@@ -2,11 +2,12 @@
 A dead simple blog website made for (Personal Blog project)[https://roadmap.sh/projects/personal-blog], mainly to practice Express.JS
 
 ## Setting up
+- Start MariaDB/MySQL
 - `npm install`
 - `DB_USERNAME={db_username} DB_PASSWORD={db_password} npx sequelize-cli db:migrate`
 
 ## Running
-`npm run dev`
+`DB_USERNAME={db_username} DB_PASSWORD={db_password} npm run dev`
 
 ### Logging in
 Enter `localhost:3000/login` and enter `admin` as username and password.
