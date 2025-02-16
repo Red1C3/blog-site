@@ -7,7 +7,8 @@ A dead simple blog website made for (Personal Blog project)[https://roadmap.sh/p
 - `DB_USERNAME={db_username} DB_PASSWORD={db_password} npx sequelize-cli db:migrate`
 
 ## Running
-`DB_USERNAME={db_username} DB_PASSWORD={db_password} npm run dev`
+- Start MariaDB/MySQL
+- `DB_USERNAME={db_username} DB_PASSWORD={db_password} npm run dev`
 
 ### Logging in
 Enter `localhost:3000/login` and enter `admin` as username and password.
