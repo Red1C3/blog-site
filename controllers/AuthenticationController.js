@@ -7,6 +7,7 @@ function login(req,res){
     req.session.loggedIn=true
     res.redirect('/')
   }else{
+    req.flash('errors','Invalid credentials.')
     res.redirect('/login')
   }
 }

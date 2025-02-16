@@ -17,20 +17,33 @@ async function index(req, res) {
 
 async function get(req, res) {
   const post = await Post.findByPk(req.params.postId)
-  res.render('post.ejs', { post })
+  console.log(post)
+  if (post === null) {
+    res.render('notFound.ejs')
+  } else {
+    res.render('post.ejs', { post })
+  }
 }
 
 async function edit(req, res) {
   const post = await Post.findByPk(req.params.postId)
-  res.render('edit.ejs', { post })
+  if (post === null) {
+    res.render('notFound.ejs')
+  } else {
+    res.render('edit.ejs', { post })
+  }
 }
 
-async function update(req,res){
-  const post=await Post.findByPk(req.params.postId)
-  await post.update(
-    req.body
-  )
-  res.redirect('/post/'+req.params.postId)
+async function update(req, res) {
+  const post = await Post.findByPk(req.params.postId)
+  if (post === null) {
+    res.render('notFound.ejs')
+  } else {
+    await post.update(
+      req.body
+    )
+    res.redirect('/post/' + req.params.postId)
+  }
 }
 
 module.exports = {

@@ -5,6 +5,8 @@ const { body } = require('express-validator')
 const session = require('express-session')
 const exposeSession = require('./middlewares/exposeSession')
 const redirectIfUnauthorized = require('./middlewares/redirectIfUnauthorized')
+const flash=require('connect-flash')
+const exposeFlash=require('./middlewares/exposeFlash')
 
 const app = express()
 
@@ -13,6 +15,8 @@ app.use(express.json())
 app.use(express.urlencoded())
 app.use(session({ secret: "keyboard cat" }))
 app.use(exposeSession)
+app.use(flash())
+app.use(exposeFlash)
 
 app.get('/new',redirectIfUnauthorized, PostController.create)
 app.post('/create',redirectIfUnauthorized
@@ -28,6 +32,9 @@ app.post('/update/:postId',redirectIfUnauthorized, body('title').isString().opti
   PostController.update)
 app.get('/login', AuthenticationController.loginGet)
 app.post('/login', AuthenticationController.login)
+app.all('*',function(req,res){
+  res.render('notFound.ejs')
+})
 
 app.listen(3000, () => {
   console.log('Listening on 3000')
