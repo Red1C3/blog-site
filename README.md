@@ -1,5 +1,5 @@
 # blog-site
-A dead simple blog website made for (Personal Blog project)[https://roadmap.sh/projects/personal-blog]
+A dead simple blog website made for (Personal Blog project)[https://roadmap.sh/projects/personal-blog], mainly to practice Express.JS
 
 ## Setting up
 - `npm install`
