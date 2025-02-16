@@ -4,6 +4,7 @@ const AuthenticationController = require('./controllers/AuthenticationController
 const { body } = require('express-validator')
 const session = require('express-session')
 const exposeSession = require('./middlewares/exposeSession')
+const redirectIfUnauthorized = require('./middlewares/redirectIfUnauthorized')
 
 const app = express()
 
@@ -13,15 +14,16 @@ app.use(express.urlencoded())
 app.use(session({ secret: "keyboard cat" }))
 app.use(exposeSession)
 
-app.get('/new', PostController.create)
-app.post('/create', body("title").isString(), body("date").isDate(), body("content").isString(),
+app.get('/new',redirectIfUnauthorized, PostController.create)
+app.post('/create',redirectIfUnauthorized
+  , body("title").isString(), body("date").isDate(), body("content").isString(),
   PostController.store)
 app.get('/home', PostController.index)
 app.get('/', PostController.index)
 app.get('/admin', PostController.index)
 app.get('/post/:postId', PostController.get)
-app.get('/edit/:postId', PostController.edit)
-app.post('/update/:postId', body('title').isString().optional(),
+app.get('/edit/:postId',redirectIfUnauthorized, PostController.edit)
+app.post('/update/:postId',redirectIfUnauthorized, body('title').isString().optional(),
   body('date').isDate().optional(), body('content').isString().optional(),
   PostController.update)
 app.get('/login', AuthenticationController.loginGet)
